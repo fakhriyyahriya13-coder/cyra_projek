@@ -1,0 +1,6 @@
+{
+    "require": {
+        "php": ">=8.2",
+        "google/cloud-dialogflow": "^1.17"
+    }
+}

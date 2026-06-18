@@ -1,0 +1,122 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background: #1e293b;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+}
+
+/* LOGO */
+.logo-area {
+    margin-bottom: 30px;
+}
+
+/* MENU */
+.menu-list {
+    list-style: none;
+}
+
+/* ITEM */
+.menu-item {
+    margin-bottom: 8px;
+}
+
+/* LINK & BUTTON */
+.menu-item a,
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e2e8f0;
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* HOVER */
+.menu-item a:hover,
+.menu-link:hover {
+    background: #334155;
+}
+
+/* ACTIVE MENU */
+.menu-item.active > a,
+.menu-item.active > .menu-link {
+    background: #3b82f6;
+    color: #fff;
+}
+
+/* SUBMENU */
+.submenu {
+    list-style: none;
+    padding-left: 15px;
+    margin-top: 5px;
+    display: none;
+}
+
+/* SHOW SUBMENU */
+.menu-item.open .submenu {
+    display: block;
+}
+
+/* SUBMENU LINK */
+.submenu li a {
+    display: block;
+    padding: 8px 10px;
+    color: #cbd5f5;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+/* HOVER SUBMENU */
+.submenu li a:hover {
+    background: #334155;
+    color: #fff;
+}
+
+/* ACTIVE SUBMENU (INI YANG PENTING 🔥) */
+.submenu li a.active {
+    background: #2563eb;
+    color: #fff;
+}
+
+/* ARROW */
+.arrow {
+    margin-left: auto;
+    transition: 0.3s;
+}
+
+/* ROTATE ARROW */
+.menu-item.open .arrow {
+    transform: rotate(180deg);
+}
+
+/* LOGOUT */
+.menu-item.logout a {
+    color: #f87171;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    margin-left: 240px;
+    padding: 20px;
+}

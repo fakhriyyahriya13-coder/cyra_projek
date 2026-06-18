@@ -1,0 +1,15 @@
+﻿vendor/
+ngrok.exe
+composer.phar
+key.json
+*.log
+*.txt
+app/cyra/webhook_log.txt
+app/cyra/session_state/
+.env
+storage/logs/*
+!storage/logs/.gitkeep
+storage/framework/session_state/*
+!storage/framework/session_state/.gitkeep
+storage/app/*
+!storage/app/.gitkeep
