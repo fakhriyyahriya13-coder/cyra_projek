@@ -20,3 +20,32 @@ Struktur proyek sudah dirapikan bertahap agar mirip Laravel tanpa memutus URL la
 - `docs/`: dokumentasi struktur dan cara running.
 
 Lihat `docs/RUNNING_AND_REFACTOR.md` untuk cara menjalankan dan roadmap refactor.
+
+## Deploy Percobaan ke Vercel
+
+Proyek menyediakan `vercel.json` dan front controller `api/index.php` untuk
+community PHP runtime. Database lokal XAMPP tidak dapat diakses dari Vercel,
+jadi gunakan MySQL eksternal seperti Aiven.
+
+Environment variable minimum:
+
+- `DB_HOST`
+- `DB_PORT`
+- `DB_USER`
+- `DB_PASS`
+- `DB_NAME`
+- `DB_SSL=true`
+- `DB_SSL_CA_BASE64` berisi CA certificate Aiven yang sudah diubah ke Base64
+- `CYRA_DIALOGFLOW_PROJECT_ID`
+- `CYRA_DIALOGFLOW_CREDENTIALS_BASE64` berisi `key.json` yang sudah diubah ke Base64
+
+Jangan upload `key.json`, CA certificate, atau password database ke GitHub.
+
+Data MySQL lokal dapat disalin ke Aiven dengan mengisi environment variable
+target, lalu menjalankan:
+
+```powershell
+C:\xampp\php\php.exe scripts\migrate_mysql_to_aiven.php
+```
+
+Gunakan `--append` jika target tidak boleh dikosongkan.

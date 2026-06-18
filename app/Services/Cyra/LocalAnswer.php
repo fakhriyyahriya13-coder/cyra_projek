@@ -370,7 +370,7 @@ function cyraLocalAnswer(string $message): ?string
     $conn = cyraLocalDatabaseConnection();
 
     if (!$conn) {
-        return 'Koneksi database gagal.';
+        return "Mode demo CYRA aktif. Database akademik cloud belum dikonfigurasi, jadi sementara saya hanya bisa menjawab sapaan, identitas CYRA, dan informasi umum.";
     }
 
     $pendingAnswer = cyraAnswerPendingContext($conn, $userText);

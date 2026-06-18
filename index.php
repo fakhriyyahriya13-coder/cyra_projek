@@ -6,12 +6,6 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/app/Services/Cyra/Dialogflow.php';
 require_once __DIR__ . '/app/Services/Cyra/LocalAnswer.php';
 
-try {
-    cyraDialogflowCredentialsPath();
-} catch (Throwable $e) {
-    die('File key.json tidak ditemukan.');
-}
-
 /* ================= SESSION ================= */
 if (!isset($_SESSION['df_session_id']) || empty($_SESSION['df_session_id'])) {
     $_SESSION['df_session_id'] = bin2hex(random_bytes(16));

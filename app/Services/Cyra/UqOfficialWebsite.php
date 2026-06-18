@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__, 2) . '/Foundation/Paths.php';
 
 function uqOfficialWebsiteUrl(): string
 {
@@ -7,7 +8,7 @@ function uqOfficialWebsiteUrl(): string
 
 function uqOfficialWebsiteCachePath(): string
 {
-    return dirname(__DIR__, 3) . '/storage/app/uq_official_links.json';
+    return cyraRuntimePath('app/uq_official_links.json');
 }
 
 function uqNormalizeWhitespace(string $text): string

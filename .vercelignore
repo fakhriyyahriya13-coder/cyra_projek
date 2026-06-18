@@ -1,0 +1,15 @@
+.git
+.vercel
+vendor
+key.json
+composer.phar
+ngrok.exe
+*.txt
+*.log
+app/cyra/session_state
+storage/app/*
+!storage/app/.gitkeep
+storage/framework/session_state/*
+!storage/framework/session_state/.gitkeep
+storage/logs/*
+!storage/logs/.gitkeep

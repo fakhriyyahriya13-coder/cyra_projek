@@ -3,13 +3,14 @@
  * Webhook response and logging helpers.
  * Extracted from app/cyra/webhook.php to keep the webhook endpoint small.
  */
+require_once dirname(__DIR__, 2) . '/Foundation/Paths.php';
 
 /* =========================================================
    LOG
 ========================================================= */
 function writeLog($text)
 {
-    $logDir = dirname(__DIR__, 3) . '/storage/logs';
+    $logDir = cyraRuntimePath('logs');
 
     if (!is_dir($logDir)) {
         @mkdir($logDir, 0777, true);

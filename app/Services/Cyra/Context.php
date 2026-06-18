@@ -3,6 +3,7 @@
  * Dialogflow context persistence helpers.
  * Extracted from app/cyra/webhook.php to keep the webhook endpoint small.
  */
+require_once dirname(__DIR__, 2) . '/Foundation/Paths.php';
 
 /* =========================================================
    CONTEXT DIALOGFLOW
@@ -20,7 +21,7 @@ function getSessionKey($request)
 
 function getStateFile($request)
 {
-    $dir = dirname(__DIR__, 3) . '/storage/framework/session_state';
+    $dir = cyraRuntimePath('framework/session_state');
 
     if (!is_dir($dir)) {
         @mkdir($dir, 0777, true);

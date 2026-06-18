@@ -27,10 +27,38 @@ function cyraDialogflowCredentialsPath(): string
     $credentialsPath = realpath(dirname(__DIR__, 3) . '/key.json');
 
     if ($credentialsPath === false || !file_exists($credentialsPath)) {
-        throw new RuntimeException('File credentials Dialogflow tidak ditemukan.');
+        throw new RuntimeException('Credentials Dialogflow tidak ditemukan.');
     }
 
     return $credentialsPath;
+}
+
+function cyraDialogflowCredentials(): array|string
+{
+    $credentialsJson = trim((string)getenv('CYRA_DIALOGFLOW_CREDENTIALS_JSON'));
+    $credentialsBase64 = trim((string)getenv('CYRA_DIALOGFLOW_CREDENTIALS_BASE64'));
+
+    if ($credentialsJson === '' && $credentialsBase64 !== '') {
+        $decoded = base64_decode($credentialsBase64, true);
+
+        if ($decoded === false) {
+            throw new RuntimeException('CYRA_DIALOGFLOW_CREDENTIALS_BASE64 tidak valid.');
+        }
+
+        $credentialsJson = $decoded;
+    }
+
+    if ($credentialsJson !== '') {
+        $credentials = json_decode($credentialsJson, true);
+
+        if (!is_array($credentials) || empty($credentials['project_id']) || empty($credentials['private_key'])) {
+            throw new RuntimeException('Environment credentials Dialogflow tidak valid.');
+        }
+
+        return $credentials;
+    }
+
+    return cyraDialogflowCredentialsPath();
 }
 
 function cyraDetectIntent(
@@ -61,7 +89,7 @@ function cyraDetectIntent(
 
     try {
         $sessionClient = new Google\Cloud\Dialogflow\V2\SessionsClient([
-            'credentials' => cyraDialogflowCredentialsPath()
+            'credentials' => cyraDialogflowCredentials()
         ]);
 
         $session = $sessionClient->sessionName(cyraDialogflowProjectId(), $sessionId);

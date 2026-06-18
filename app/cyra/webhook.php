@@ -9,7 +9,11 @@ require_once __DIR__ . '/../Services/Cyra/Context.php';
 require_once __DIR__ . '/../Services/Cyra/DatabaseHelpers.php';
 require_once __DIR__ . '/../Services/Cyra/AcademicAnswers.php';
 
-$conn = cyraRequireDatabase();
+try {
+    $conn = cyraRequireDatabase();
+} catch (Throwable $e) {
+    jsonResponse(cyraDatabaseErrorReply());
+}
 
 /* =========================================================
    VALIDASI REQUEST
