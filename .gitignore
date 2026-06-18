@@ -7,6 +7,8 @@ key.json
 app/cyra/webhook_log.txt
 app/cyra/session_state/
 .env
+.vercel.env.local
+deploy-local/
 storage/logs/*
 !storage/logs/.gitkeep
 storage/framework/session_state/*
