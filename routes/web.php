@@ -8,5 +8,4 @@ return [
     'GET /' => 'index.php',
     'GET /admin/login' => 'app/auth/login.php',
     'GET /admin/dashboard' => 'app/admin/dashboard.php',
-    'GET /admin/log_percakapan' => 'app/admin/log_percakapan.php',
 ];

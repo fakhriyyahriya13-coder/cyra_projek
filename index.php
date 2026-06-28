@@ -114,17 +114,6 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
         'message' => $responseMessage
     ];
 
-    $connLog = cyraLocalDatabaseConnection();
-    if ($connLog) {
-        $sessionId = $_SESSION['df_session_id'] ?? '';
-        $stmtLog = $connLog->prepare("INSERT INTO chat_logs (session_id, user_message, bot_response) VALUES (?, ?, ?)");
-        if ($stmtLog) {
-            $stmtLog->bind_param("sss", $sessionId, $userText, $responseMessage);
-            $stmtLog->execute();
-            $stmtLog->close();
-        }
-    }
-
     echo json_encode([
         'status' => 'ok',
         'reply' => $responseMessage
