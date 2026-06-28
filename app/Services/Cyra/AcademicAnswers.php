@@ -1203,9 +1203,15 @@ function tampilJadwalUjianMataKuliah($conn, $table, $label, $userText, $semester
     $values = [];
 
     if ($semester !== null && columnExists($conn, $table, 'semester')) {
-        $where[] = "`semester` = ?";
-        $types .= "i";
-        $values[] = $semester;
+        if ($semester === 'ganjil') {
+            $where[] = "MOD(`semester`, 2) = 1";
+        } elseif ($semester === 'genap') {
+            $where[] = "MOD(`semester`, 2) = 0";
+        } else {
+            $where[] = "`semester` = ?";
+            $types .= "i";
+            $values[] = $semester;
+        }
     }
 
     if ($where !== []) {
@@ -1661,9 +1667,15 @@ function cyraFindJadwalRowsByMataKuliahKeyword($conn, $keyword, $semester = null
     }
 
     if ($semester !== null && columnExists($conn, $table, 'semester')) {
-        $where[] = "`semester` = ?";
-        $types .= "i";
-        $values[] = $semester;
+        if ($semester === 'ganjil') {
+            $where[] = "MOD(`semester`, 2) = 1";
+        } elseif ($semester === 'genap') {
+            $where[] = "MOD(`semester`, 2) = 0";
+        } else {
+            $where[] = "`semester` = ?";
+            $types .= "i";
+            $values[] = $semester;
+        }
     }
 
     if ($where !== []) {
@@ -2072,9 +2084,15 @@ function tampilJadwalKuliahHari($conn, $hari, $semester = null)
     $values = [$hari];
 
     if ($semester !== null && columnExists($conn, $table, 'semester')) {
-        $where[] = "`semester` = ?";
-        $types .= "i";
-        $values[] = $semester;
+        if ($semester === 'ganjil') {
+            $where[] = "MOD(`semester`, 2) = 1";
+        } elseif ($semester === 'genap') {
+            $where[] = "MOD(`semester`, 2) = 0";
+        } else {
+            $where[] = "`semester` = ?";
+            $types .= "i";
+            $values[] = $semester;
+        }
     }
 
     $sql = "SELECT * FROM `$table` WHERE " . implode(" AND ", $where)
