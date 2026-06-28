@@ -536,7 +536,7 @@ function extractHari($text, $params = [])
 
 function formatTanggal($tanggal)
 {
-    if (!$tanggal || $tanggal === '0000-00-00' || $tanggal === '-') {
+    if (!$tanggal || $tanggal === '0000-00-00' || $tanggal === '-' || $tanggal === '1970-01-01') {
         return '-';
     }
 
