@@ -343,11 +343,21 @@ $chatbot_active = in_array($current, $chatbot_pages, true);
         </li>
 
         <!-- CHATBOT -->
-        <li class="admin-nav-item <?= $chatbot_active ? 'is-active' : '' ?>">
+        <li class="admin-nav-item <?= $current === 'faq.php' ? 'is-active' : '' ?>">
             <a href="faq.php" class="admin-nav-link">
                 <span class="admin-nav-left">
                     <i class="fa-solid fa-comments"></i>
                     <span>FAQ Chatbot</span>
+                </span>
+            </a>
+        </li>
+
+        <!-- LOG PERCAKAPAN -->
+        <li class="admin-nav-item <?= $current === 'log_percakapan.php' ? 'is-active' : '' ?>">
+            <a href="log_percakapan.php" class="admin-nav-link">
+                <span class="admin-nav-left">
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>Log Percakapan</span>
                 </span>
             </a>
         </li>
