@@ -441,6 +441,14 @@ function extractSemester($text, $params = [])
         return (int)$number;
     }
 
+    if (strpos(strtolower($text), 'ganjil') !== false) {
+        return 'ganjil';
+    }
+
+    if (strpos(strtolower($text), 'genap') !== false) {
+        return 'genap';
+    }
+
     if (preg_match('/semester\s*([1-9])/i', $text, $m)) {
         return (int)$m[1];
     }
