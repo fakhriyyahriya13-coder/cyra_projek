@@ -73,16 +73,21 @@ if ($conn instanceof mysqli) {
         $clientFlags |= MYSQLI_CLIENT_SSL_VERIFY_SERVER_CERT;
     }
 
-    $connected = @mysqli_real_connect(
-        $conn,
-        DB_HOST,
-        DB_USER,
-        DB_PASS,
-        DB_NAME,
-        DB_PORT,
-        null,
-        $clientFlags
-    );
+    $connected = false;
+    try {
+        $connected = @mysqli_real_connect(
+            $conn,
+            DB_HOST,
+            DB_USER,
+            DB_PASS,
+            DB_NAME,
+            DB_PORT,
+            null,
+            $clientFlags
+        );
+    } catch (mysqli_sql_exception $e) {
+        $connected = false;
+    }
 
     if (!$connected) {
         $conn = false;
@@ -97,7 +102,7 @@ if ($conn instanceof mysqli) {
 if (!$conn) {
     $isVercel = getenv('VERCEL') === '1' || getenv('VERCEL_ENV') !== false;
 
-    if (!$isVercel) {
+    if (!$isVercel && !defined('CYRA_NO_DB_DIE')) {
         die("Koneksi database gagal: " . mysqli_connect_error());
     }
 

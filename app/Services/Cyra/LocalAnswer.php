@@ -11,6 +11,9 @@ function cyraLocalDatabaseConnection(): ?mysqli
 
     if (!$loaded) {
         $loaded = true;
+        if (!defined('CYRA_NO_DB_DIE')) {
+            define('CYRA_NO_DB_DIE', true);
+        }
         require dirname(__DIR__, 3) . '/config/database.php';
         $connection = isset($conn) && $conn instanceof mysqli ? $conn : null;
     }
